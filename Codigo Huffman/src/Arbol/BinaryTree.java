@@ -180,11 +180,40 @@ public class BinaryTree{
                         for(String elem:listCaracteres ){
                             if(caracter.toString().compareTo(elem)==0){
                                 codigo = codigo +t.getRoot().getContent().getBit();
+                                if(t.getLeft()!=null){
+                                    stack.push(t.getLeft());
+                                }if(t.getRight()!=null){
+                                    stack.push(t.getRight());
+                                }
                             }
                         }
                     }
                 }
             }  
+        }
+    }
+    
+    /*Pregunta 4*/
+    
+    public String encode(String caracteres,Map<Character,String> dic1 ){
+        if(caracteres==null || dic1==null){
+            return null;
+        }else{
+            String[] cadenachar = caracteres.split("");
+            String codigoSalida ="";
+            for(String elem: cadenachar){
+                Set<Character> keydic = dic1.keySet();
+                Iterator<Character> iterator = keydic.iterator();
+                while(iterator.hasNext()){
+                    Character key = iterator.next();
+                    String codigo = dic1.get(key);
+                    if(elem.compareTo(key.toString())==0){
+                        codigoSalida = codigoSalida + codigo;
+                        break;
+                    }
+                }   
+            }
+            return codigoSalida;
         }
     }
 }
